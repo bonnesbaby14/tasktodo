@@ -26,11 +26,20 @@ const style = {
         }
     }
 }
+
+const onClickButtom=()=>{
+    alert("se abrio desde funcion");
+}
+
 const BotonNuevo = () => {
 
     return (
 
-        <butttom style={style.boton}>+</butttom>
+        <button style={style.boton} onClick={onClickButtom}> +</button>
+        
+
+        
+    
 
     );
 }

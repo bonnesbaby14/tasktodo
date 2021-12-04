@@ -18,12 +18,16 @@ const style = {
     }
 }
 
+const onSearch=(event)=>{
+console.log(event.target.value);
+}
+
 const Buscar = () => {
 
 
 
     return (
-        <input style={style.buscar} placeholder="Buscar..."></input>
+        <input onChange={onSearch} style={style.buscar} placeholder="Buscar..."></input>
     );
 }
 

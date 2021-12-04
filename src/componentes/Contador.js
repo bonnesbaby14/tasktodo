@@ -16,6 +16,7 @@ const Contador =()=>{
 
     return (
         <h1 style={style}>5 tareas de completadas de 18</h1>
+        
     );
 }
 

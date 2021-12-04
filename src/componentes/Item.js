@@ -48,6 +48,7 @@ const style = {
     },
     iconDelete:{
         fontSize:"20px",
+        cursor:"pointer",
         position:"absolute",
         top:"-15px",
         right:"0",
@@ -59,7 +60,12 @@ const style = {
 
 }
 
-
+const onComplete=()=>{
+    alert("se completo la tarea");
+}
+const onDelete=()=>{
+    alert("se elimno  la tarea");
+}
 
 
 const Item = () => {
@@ -68,9 +74,12 @@ const Item = () => {
     return (
 
         <li style={style.item}>
-            <span style={{...style.icon,...style.iconCheck}}> √ </span>
+            <span onClick={onComplete} style={{...style.icon,...style.iconCheck}}> √ </span>
             <p style={style.itemP}>Tarea uno</p>
-            <span style={style.iconDelete}>X</span>
+            <span onClick={onDelete} style={style.iconDelete}>X</span>
+            
+            
+            
         </li>
     )
         ;
