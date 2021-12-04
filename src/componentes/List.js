@@ -1,9 +1,26 @@
 import React from "react";
 
-const List =()=>{
+
+const style ={
+
+    lista:{
+        margin:0,
+        padding:"0 0 56px 0",
+        listStyle:"none"
+    }
+
+}
+
+
+const List =(props)=>{
+
 
     return (
-        <h1>soy una lista</h1>
+        <section>
+            <ul style={style.lista}>
+                {props.children}
+            </ul>
+        </section>
     );
 }
 

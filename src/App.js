@@ -13,8 +13,10 @@ function App() {
      
      <Buscar/>
      <BotonNuevo/>
-     <List/>
-     <Item/>
+     <List>
+     <Item/>     <Item/>     <Item/>
+     </List>
+
      <Contador/>
      
     </div>
