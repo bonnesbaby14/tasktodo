@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 
 const style = {
@@ -18,16 +18,20 @@ const style = {
     }
 }
 
-const onSearch=(event)=>{
-console.log(event.target.value);
-}
 
 const Buscar = () => {
+    const [estado,setEstado]=useState('');
 
+    const onSearch=(event)=>{
+    console.log(event.target.value);
+    setEstado(event.target.value);
+    
+    }
+    
 
 
     return (
-        <input onChange={onSearch} style={style.buscar} placeholder="Buscar..."></input>
+        <input onChange={onSearch} value={estado} style={style.buscar} placeholder="Buscar..."></input>
     );
 }
 
