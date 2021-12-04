@@ -11,11 +11,11 @@ const style ={
     
 }
 
-const Contador =()=>{
+const Contador =(props)=>{
 
 
     return (
-        <h1 style={style}>5 tareas de completadas de 18</h1>
+        <h1 style={style}>{props.complete} tareas de completadas de {props.total}</h1>
         
     );
 }

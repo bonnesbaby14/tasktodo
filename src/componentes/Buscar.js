@@ -19,19 +19,18 @@ const style = {
 }
 
 
-const Buscar = () => {
-    const [estado,setEstado]=useState('');
+const Buscar = ({searchValue,setSearchValue}) => {
 
     const onSearch=(event)=>{
     console.log(event.target.value);
-    setEstado(event.target.value);
+    setSearchValue(event.target.value);
     
     }
     
 
 
     return (
-        <input onChange={onSearch} value={estado} style={style.buscar} placeholder="Buscar..."></input>
+        <input onChange={onSearch} value={ searchValue} style={style.buscar} placeholder="Buscar..."></input>
     );
 }
 

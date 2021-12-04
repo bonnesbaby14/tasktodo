@@ -68,14 +68,14 @@ const onDelete=()=>{
 }
 
 
-const Item = () => {
+const Item = (props) => {
 
 
     return (
 
         <li style={style.item}>
             <span onClick={onComplete} style={{...style.icon,...style.iconCheck}}> √ </span>
-            <p style={style.itemP}>Tarea uno</p>
+            <p style={style.itemP}>{props.task}</p>
             <span onClick={onDelete} style={style.iconDelete}>X</span>
             
             
