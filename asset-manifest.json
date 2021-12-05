@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.js": "/tasktodo/static/js/main.f1de5bc8.chunk.js",
+    "main.js.map": "/tasktodo/static/js/main.f1de5bc8.chunk.js.map",
+    "runtime-main.js": "/tasktodo/static/js/runtime-main.f5a3694c.js",
+    "runtime-main.js.map": "/tasktodo/static/js/runtime-main.f5a3694c.js.map",
+    "static/js/2.63136c74.chunk.js": "/tasktodo/static/js/2.63136c74.chunk.js",
+    "static/js/2.63136c74.chunk.js.map": "/tasktodo/static/js/2.63136c74.chunk.js.map",
+    "index.html": "/tasktodo/index.html",
+    "static/js/2.63136c74.chunk.js.LICENSE.txt": "/tasktodo/static/js/2.63136c74.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f5a3694c.js",
+    "static/js/2.63136c74.chunk.js",
+    "static/js/main.f1de5bc8.chunk.js"
+  ]
+}
