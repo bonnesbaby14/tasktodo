@@ -9,26 +9,30 @@ import { useState } from "react";
 
 
 function App() {
+
+  const localstorageTask=localStorage.getItem("TASK_V1");
+  let parsedTask;
+
+  const saveTask=(newTask)=>{
+
+    localStorage.setItem("TASK_V1",JSON.stringify(newTask));
+    setTasks(newTask)
+
+  }
+
+  if(!localstorageTask){
+    localStorage.setItem("TASK_V1",JSON.stringify([]));
+    parsedTask=[];
+
+
+  }else{
+    parsedTask=JSON.parse(localstorageTask);
+  }
+
+
   const [searchValue, setSearchValue] = useState('');
-  const [tasks, setTasks] = useState([{
-    task: "esta es la tarea",
-    status: false,
-  }, {
-    task: "esta es la tarea 2",
-    status: false,
-  }, {
-    task: "esta es la tarea 3",
-    status: true,
-  }, {
-    task: "esta es la tarea 4",
-    status: false,
-  }, {
-    task: "esta es la tarea 5",
-    status: false,
-  }, {
-    task: "cebolla",
-    status: false,
-  }]);
+  const [tasks, setTasks] = useState(parsedTask);
+
 
   const completeTask=tasks.filter(task=>task.status==true).length;
   const totalTaskComplete=tasks.length;
@@ -41,7 +45,7 @@ function App() {
     const newTasks=[...tasks];
     newTasks[taskIndex].status=true;
 
-    setTasks(newTasks);
+    saveTask(newTasks);
 
   }
   const deleteTask=(text)=>{
@@ -49,7 +53,7 @@ function App() {
     const newTasks=[...tasks];
     newTasks.splice(taskIndex,1);
 
-    setTasks(newTasks);
+    saveTask(newTasks);
 
   }
 
