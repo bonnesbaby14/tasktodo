@@ -5,7 +5,9 @@ import Buscar from "./componentes/Buscar";
 import List from "./componentes/List";
 import Item from "./componentes/Item";
 import Contador from "./componentes/Contador"
+import Modal from "./componentes/modal";
 import { useEffect, useState } from "react";
+import TaskForm from "./componentes/TaskForm";
 
 
 
@@ -68,6 +70,7 @@ function App() {
 
 
   const [searchValue, setSearchValue] = useState('');
+  const [modal,setModal]=useState(false);
 
 
 
@@ -110,7 +113,7 @@ function App() {
     <>
 
       <Buscar searchValue={searchValue} setSearchValue={setSearchValue} />
-      <BotonNuevo />
+      <BotonNuevo setModal={setModal} modal={modal }/>
       <List>
         {error && <h1>Ocurrio un error, intente mas tarde...</h1>}
         {loading && <h1>Cargando contenido...</h1>}
@@ -122,6 +125,8 @@ function App() {
       </List>
 
       <Contador total={totalTaskComplete} complete={completeTask} />
+      
+      {modal && <Modal> <TaskForm saveItem={setTasks} items={tasks} setModal={setModal} modal={modal} ></TaskForm></Modal>}
 
     </>
   );

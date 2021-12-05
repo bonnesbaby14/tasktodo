@@ -20,6 +20,7 @@ const style = {
         height: "64px",
         width: "64px",
         transform: "rotate(0)",
+        zIndex:100,
         transition: ".3s ease",
         ":hover": {
             transform: "rotate(224deg)"
@@ -27,11 +28,12 @@ const style = {
     }
 }
 
-const onClickButtom=()=>{
-    alert("se abrio desde funcion");
-}
 
-const BotonNuevo = () => {
+
+const BotonNuevo = ({setModal,modal}) => {
+    const onClickButtom=()=>{
+        setModal(!modal);
+       }
 
     return (
 
