@@ -12,7 +12,7 @@ const style ={
     
 }
 
-const Contador =(props)=>{
+const Contador =()=>{
 const {completeTask,
     totalTaskComplete,}=useContext(TaskContext);
 
