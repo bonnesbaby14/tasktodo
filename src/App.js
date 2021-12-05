@@ -12,7 +12,7 @@ function App() {
   const [searchValue, setSearchValue] = useState('');
   const [tasks, setTasks] = useState([{
     task: "esta es la tarea",
-    status: true,
+    status: false,
   }, {
     task: "esta es la tarea 2",
     status: false,
@@ -24,16 +24,34 @@ function App() {
     status: false,
   }, {
     task: "esta es la tarea 5",
-    status: true,
+    status: false,
   }, {
     task: "cebolla",
-    status: true,
+    status: false,
   }]);
 
   const completeTask=tasks.filter(task=>task.status==true).length;
   const totalTaskComplete=tasks.length;
 
   var  taskSearched =[];
+
+
+  const completeTasks=(text)=>{
+    const taskIndex=tasks.findIndex(task=>task.task==text);
+    const newTasks=[...tasks];
+    newTasks[taskIndex].status=true;
+
+    setTasks(newTasks);
+
+  }
+  const deleteTask=(text)=>{
+    const taskIndex=tasks.findIndex(task=>task.task==text);
+    const newTasks=[...tasks];
+    newTasks.splice(taskIndex,1);
+
+    setTasks(newTasks);
+
+  }
 
   if(searchValue.length < 0){
     taskSearched=tasks;
@@ -52,7 +70,9 @@ function App() {
       <BotonNuevo />
       <List>
       {
-        taskSearched.map(task=>(<Item key={task.task} task={task.task} status={task.status} />))
+        taskSearched.map(task=>(<Item key={task.task} task={task.task} status={task.status} onComplete={()=>completeTasks(task.task)} onDelete={()=>{
+          deleteTask(task.task)
+        }}/>))
       }
       </List>
 

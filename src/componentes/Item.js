@@ -60,22 +60,17 @@ const style = {
 
 }
 
-const onComplete=()=>{
-    alert("se completo la tarea");
-}
-const onDelete=()=>{
-    alert("se elimno  la tarea");
-}
 
 
-const Item = (props) => {
+const Item = ({task,status,onComplete,onDelete}) => {
 
 
     return (
 
         <li style={style.item}>
-            <span onClick={onComplete} style={{...style.icon,...style.iconCheck}}> √ </span>
-            <p style={style.itemP}>{props.task}</p>
+
+            <span onClick={onComplete} style={!status?{...style.icon,...style.iconCheck}:{...style.icon,...style.iconCheck,...style.iconCheckActive}}> √ </span>
+            <p style={status?{...style.itemP,...style.itemPComplete}:style.itemP}>{task}</p>
             <span onClick={onDelete} style={style.iconDelete}>X</span>
             
             
