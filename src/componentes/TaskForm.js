@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { TaskContext } from "../context";
 
 
 
@@ -78,8 +79,10 @@ const style = {
 }
 
 
-const TaskForm = ({ setModal, modal, setTasks, tasks }) => {
+
+const TaskForm = () => {
     const [text,setText]=useState("");
+    const { setModal, modal, setTasks, tasks }=useContext(TaskContext);
 
 
 

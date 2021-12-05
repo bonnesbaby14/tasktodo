@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TaskContext } from "../context";
 
 
 const style = {
@@ -20,7 +21,7 @@ const style = {
         height: "64px",
         width: "64px",
         transform: "rotate(0)",
-        zIndex:100,
+        zIndex: 100,
         transition: ".3s ease",
         ":hover": {
             transform: "rotate(224deg)"
@@ -30,18 +31,19 @@ const style = {
 
 
 
-const BotonNuevo = ({setModal,modal}) => {
-    const onClickButtom=()=>{
+const BotonNuevo = () => {
+    const { setModal, modal } = useContext(TaskContext)
+    const onClickButtom = () => {
         setModal(!modal);
-       }
+    }
 
     return (
 
         <button style={style.boton} onClick={onClickButtom}> +</button>
-        
 
-        
-    
+
+
+
 
     );
 }

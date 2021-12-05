@@ -1,4 +1,5 @@
-import react from "react";
+import react, { useContext } from "react";
+import { TaskContext } from "../context";
 
 
 
@@ -12,10 +13,11 @@ const style ={
 }
 
 const Contador =(props)=>{
-
+const {completeTask,
+    totalTaskComplete,}=useContext(TaskContext);
 
     return (
-        <h1 style={style}>{props.complete} tareas de completadas de {props.total}</h1>
+        <h1 style={style}>{completeTask} tareas de completadas de {totalTaskComplete}</h1>
         
     );
 }

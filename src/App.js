@@ -1,73 +1,31 @@
 
-// import './App.css';
 import BotonNuevo from "./componentes/BotonNuevo";
 import Buscar from "./componentes/Buscar";
 import List from "./componentes/List";
 import Item from "./componentes/Item";
 import Contador from "./componentes/Contador"
 import Modal from "./componentes/modal";
-import {  useState } from "react";
+import { useContext } from "react";
 import TaskForm from "./componentes/TaskForm";
-import useLocalStorage from "./hooks/useLocalStorage";
 
-
-
-
-
+import { TaskProvider, TaskContext } from "./context/index";
 
 
 
 function App() {
 
-  const { items: tasks, saveItem: setTasks, loading, error } = useLocalStorage("TASK_V1", []);
-
-
-
-  const [searchValue, setSearchValue] = useState('');
-  const [modal,setModal]=useState(false);
-
-
-
-  const completeTask = tasks.filter(task => task.status == true).length;
-  const totalTaskComplete = tasks.length;
-
-  var taskSearched = [];
-
-
-  const completeTasks = (text) => {
-    const taskIndex = tasks.findIndex(task => task.task == text);
-    const newTasks = [...tasks];
-    newTasks[taskIndex].status = true;
-
-    setTasks(newTasks);
-
-  }
-  const deleteTask = (text) => {
-    const taskIndex = tasks.findIndex(task => task.task == text);
-    const newTasks = [...tasks];
-    newTasks.splice(taskIndex, 1);
-
-    setTasks(newTasks);
-
-  }
-
-  if (searchValue.length < 0) {
-    taskSearched = tasks;
-  } else {
-    taskSearched = tasks.filter(task => {
-      const taskSearch = task.task.toLocaleLowerCase();
-      const searchText = searchValue.toLocaleLowerCase();
-      return taskSearch.includes(searchText);
-    })
-  }
-
+  const {error,loading,deleteTask,completeTasks,taskSearched,modal}=useContext(TaskContext);
 
 
   return (
     <>
 
-      <Buscar searchValue={searchValue} setSearchValue={setSearchValue} />
-      <BotonNuevo setModal={setModal} modal={modal }/>
+      <Buscar />
+      <BotonNuevo />
+
+
+
+
       <List>
         {error && <h1>Ocurrio un error, intente mas tarde...</h1>}
         {loading && <h1>Cargando contenido...</h1>}
@@ -78,9 +36,10 @@ function App() {
         }
       </List>
 
-      <Contador total={totalTaskComplete} complete={completeTask} />
-      
-      {modal && <Modal> <TaskForm saveItem={setTasks} items={tasks} setModal={setModal} modal={modal} setTasks={setTasks} tasks={tasks} ></TaskForm></Modal>}
+
+      <Contador />
+
+      {modal && <Modal> <TaskForm ></TaskForm></Modal>}
 
     </>
   );

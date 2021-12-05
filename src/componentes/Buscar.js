@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { TaskContext } from "../context";
 
 
 const style = {
@@ -19,7 +20,9 @@ const style = {
 }
 
 
-const Buscar = ({searchValue,setSearchValue}) => {
+
+const Buscar = () => {
+    const {searchValue,setSearchValue}=useContext(TaskContext);
 
     const onSearch=(event)=>{
     console.log(event.target.value);
