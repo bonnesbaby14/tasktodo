@@ -5,26 +5,45 @@ import Buscar from "./componentes/Buscar";
 import List from "./componentes/List";
 import Item from "./componentes/Item";
 import Contador from "./componentes/Contador"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 
 
 const useLocalStorage = (itemName, initialValue) => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-  const localstorageItem = localStorage.getItem(itemName);
-  let parseItems;
+  const [items, setItems] = useState(initialValue);
 
-  if (!localstorageItem) {
-    localStorage.setItem(itemName, JSON.stringify(initialValue));
-    parseItems = [];
+  useEffect(() => {
+
+    setTimeout(() => {
+      try {
+        const localstorageItem = localStorage.getItem(itemName);
+        let parseItems;
+
+        if (!localstorageItem) {
+          localStorage.setItem(itemName, JSON.stringify(initialValue));
+          parseItems = [];
 
 
-  } else {
-    parseItems = JSON.parse(localstorageItem);
-  }
+        } else {
+          parseItems = JSON.parse(localstorageItem);
+        }
+        setItems(parseItems);
+        setLoading(false);
+      } catch (error) {
+        setError(true);
+      }
 
-  const [items, setItems] = useState(parseItems);
+    }, 1000);
+  
+  },[]);
+
+
+
+
 
   const saveItem = (newItem) => {
 
@@ -33,9 +52,9 @@ const useLocalStorage = (itemName, initialValue) => {
 
   }
 
-  return [
-    items, saveItem
-  ]
+  return {
+    items, saveItem, loading, error
+  }
 }
 
 
@@ -44,7 +63,7 @@ const useLocalStorage = (itemName, initialValue) => {
 
 function App() {
 
-  const [tasks, setTasks] = useLocalStorage("TASK_V1", []);
+  const { items: tasks, saveItem: setTasks, loading, error } = useLocalStorage("TASK_V1", []);
 
 
 
@@ -85,12 +104,16 @@ function App() {
     })
   }
 
+
+
   return (
     <>
 
       <Buscar searchValue={searchValue} setSearchValue={setSearchValue} />
       <BotonNuevo />
       <List>
+        {error && <h1>Ocurrio un error, intente mas tarde...</h1>}
+        {loading && <h1>Cargando contenido...</h1>}
         {
           taskSearched.map(task => (<Item key={task.task} task={task.task} status={task.status} onComplete={() => completeTasks(task.task)} onDelete={() => {
             deleteTask(task.task)
